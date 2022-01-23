@@ -1,0 +1,22 @@
+@use "./variables.scss" as *;
+.noOpenChat{
+    flex: .65;
+    display: grid;
+    place-items: center;
+}
+.noOpenChatText{
+    width: 70%;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 .2rem rgba(gray, .5);
+    background: lightgray;
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-size: 2rem;
+}
+@media screen and (max-width: $mediaThreshold){
+    .noOpenChat{
+        display: none;
+    }
+}

@@ -1,0 +1,58 @@
+@use "./variables.scss" as *;
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 35%;
+}
+.sidebar_header{
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem;
+
+    svg{
+        color:gray;
+        font-size: 1.7rem;
+    }
+    img{
+        border-radius: 50%;
+        width: 2rem;
+        height: auto;
+    }
+}
+.sidebar_chats{
+    flex: 1;
+    overflow-y: scroll;
+    background: white;
+    scrollbar-color: lightgray transparent;
+    scrollbar-width: thin;
+}
+
+.addNewChat{
+    box-shadow: 0 0 .2rem rgba(gray, .5);
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover{
+        background: rgba(lightgray, .5);
+    }
+    z-index: 10;
+}
+.sidebar_headerRight{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width: $mediaThreshold){
+    .sidebar{
+        width: 100vw;
+        max-width: 100vw;
+        display: none;
+    }
+    .showSidebar{
+        display: flex;
+    }
+}

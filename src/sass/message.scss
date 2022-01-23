@@ -1,0 +1,27 @@
+.message{
+    background: white;
+    position: relative;
+    padding: .7rem;
+    border-radius: .5rem;
+    width: fit-content;
+    margin-bottom: .5rem;
+    display: flex;
+    // max-width: 30ch;
+    p{
+        max-width: 30ch;
+        overflow: auto;
+        overflow-wrap: break-word;
+    }
+    
+}
+.chat_timestamp{
+    font-size: .7rem;
+    color: gray;
+    margin-left: .5rem;
+    white-space: nowrap;
+}
+
+.reciever{
+    margin-left: auto;
+    background: #dcf8c6;
+}
