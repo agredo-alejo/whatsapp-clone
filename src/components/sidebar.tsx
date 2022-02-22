@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../sass/sidebar.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -11,10 +11,13 @@ import { collection, query, where, doc, addDoc, serverTimestamp, setDoc } from '
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useShowSidebar } from "../context/showSidebarContext";
+import AddContact from './addContact';
 
 function Sidebar() {
     let updateOtherUser = useOtherUserUpdate()
     let showSidebar = useShowSidebar()
+    const [newContact, setNewContact] = useState("")
+    const [showAddContact, setShowAddContact] = useState(false)
     const [user] = useAuthState(auth)
 
     useEffect(() => {
@@ -59,21 +62,21 @@ function Sidebar() {
         )
 
     async function addNewChat() {
-        const input = prompt(
-            "Enter an email adress for the user you wish to chat with"
-        )
 
-        if (!input) return
-        if (input == user?.email || chatAlreadyExist(input)) return
+        if (!newContact || newContact == "") return
+        if (newContact == user?.email || chatAlreadyExist(newContact)) return
 
 
         await addDoc(userChatRef, {
             timestamp: serverTimestamp(),
-            users: [user?.email, input]
+            users: [user?.email, newContact]
         })
+        setNewContact("")
     }
 
-    return (
+
+    return (<>
+        <AddContact addChat={addNewChat} contactState={[newContact, setNewContact]} modalState={[showAddContact, setShowAddContact]} />
         <div className={`sidebar ${showSidebar? "showSidebar" : ""}`} >
             <div className="sidebar_header">
                 <IconButton>
@@ -86,7 +89,7 @@ function Sidebar() {
 
                 <div className="sidebar_headerRight">
 
-                    <IconButton onClick={addNewChat}>
+                    <IconButton onClick={()=>setShowAddContact(true)}>
                         <BiPlus />
                     </IconButton>
 
@@ -98,7 +101,7 @@ function Sidebar() {
                 {sorted?.map((chat: any) => <SidebarChat key={chat.id} id={chat.id} users={chat.users} />)}
             </div>
         </div>
-    )
+    </>)
 }
 
 function SignOut() {

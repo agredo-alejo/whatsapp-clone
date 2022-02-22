@@ -1,0 +1,55 @@
+.modal{
+    display: grid;
+    place-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: rgba(black, .5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+.hide{
+    display: none;
+}
+.addContact{
+    background: white;
+    border-radius: .5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    svg{
+        cursor: pointer;
+        color:gray;
+        position: absolute;
+        right: 0;
+        padding: .2rem;
+        font-size: 1.5rem;
+    }
+    p{
+        padding: 1rem;
+        width: 80%;
+        max-width: 35ch;
+    }
+    span{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    input{
+        width: 50%;
+        border: none;
+        border-bottom: 1px solid gray;
+        padding: .1rem;
+        outline: none;
+    }
+    button{
+        cursor: pointer;
+        border: none;
+        padding: .5rem;
+        border-radius: .5rem;
+        background: #00aaff;
+        color: white;
+    }
+}
